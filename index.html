@@ -1,310 +1,156 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="We propose MetaVLA, a Meta-Learning based co-training framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines.">
+  <meta property="og:title" content="MetaVLA: Unified Meta Co-Training for Efficient Embodied Adaptation"/>
+  <meta property="og:description" content="We propose MetaVLA, a Meta-Learning based co-training framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines."/>
+  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <meta property="og:image" content="static/images/MetaVLA-v7.png" />
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+
+  <!-- <meta name="twitter:title" content="MetaVLA: Unified Meta Co-Training for Efficient Embodied Adaptation">
+  <meta name="twitter:description" content="We propose MetaVLA, a Meta-Learning based co-training framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines."> -->
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <!-- <meta name="twitter:image" content="static/images/MetaVLA-v7.png">
+  <meta name="twitter:card" content="summary_large_image"> -->
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="Vision Language Models, Vision Language Action Models, Meta-Learning, VLM, VLA, generalization, embodied AI">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
-  <!-- Primary Meta Tags -->
-  <!-- TODO: Replace with your paper title and author names -->
-  <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES">
-  <!-- TODO: Write a compelling 150-160 character description of your research -->
-  <meta name="description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Add 5-10 relevant keywords for your research area -->
-  <meta name="keywords" content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI">
-  <!-- TODO: List all authors -->
-  <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME">
-  <meta name="robots" content="index, follow">
-  <meta name="language" content="English">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article">
-  <!-- TODO: Replace with your institution or lab name -->
-  <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME">
-  <!-- TODO: Same as paper title above -->
-  <meta property="og:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta property="og:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Replace with your actual website URL -->
-  <meta property="og:url" content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE">
-  <!-- TODO: Create a 1200x630px preview image and update path -->
-  <meta property="og:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PAPER_TITLE - Research Preview">
-  <meta property="article:published_time" content="2024-01-01T00:00:00.000Z">
-  <meta property="article:author" content="FIRST_AUTHOR_NAME">
-  <meta property="article:section" content="Research">
-  <meta property="article:tag" content="KEYWORD1">
-  <meta property="article:tag" content="KEYWORD2">
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image">
-  <!-- TODO: Replace with your lab/institution Twitter handle -->
-  <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE">
-  <!-- TODO: Replace with first author's Twitter handle -->
-  <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE">
-  <!-- TODO: Same as paper title above -->
-  <meta name="twitter:title" content="PAPER_TITLE">
-  <!-- TODO: Same as description above -->
-  <meta name="twitter:description" content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS">
-  <!-- TODO: Same as social preview image above -->
-  <meta name="twitter:image" content="https://YOUR_DOMAIN.com/static/images/social_preview.png">
-  <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview">
-
-  <!-- Academic/Research Specific -->
-  <meta name="citation_title" content="PAPER_TITLE">
-  <meta name="citation_author" content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST">
-  <meta name="citation_author" content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST">
-  <meta name="citation_publication_date" content="2024">
-  <meta name="citation_conference_title" content="CONFERENCE_NAME">
-  <meta name="citation_pdf_url" content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf">
-  
-  <!-- Additional SEO -->
-  <meta name="theme-color" content="#2563eb">
-  <meta name="msapplication-TileColor" content="#2563eb">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  
-  <!-- Preconnect for performance -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://ajax.googleapis.com">
-  <link rel="preconnect" href="https://documentcloud.adobe.com">
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-
-
-  <!-- TODO: Replace with your paper title and authors -->
-  <title>PAPER_TITLE - AUTHOR_NAMES | Academic Research</title>
-  
-  <!-- Favicon and App Icons -->
+  <title>MetaVLA: Unified Meta Co-Training for Efficient Embodied Adaptation</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
-  
-  <!-- Critical CSS - Load synchronously -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
   <link rel="stylesheet" href="static/css/bulma.min.css">
+  
+  <style>
+    /* Consistent font sizes while keeping original fonts */
+    .title.is-1 {
+      font-size: 3rem !important;
+      font-weight: 600 !important;
+    }
+    
+    .title.is-3 {
+      font-size: 2rem !important;
+      font-weight: 600 !important;
+    }
+    
+    .subtitle.is-3 {
+      font-size: 1.5rem !important;
+      font-weight: 400 !important;
+    }
+    
+    .subtitle {
+      font-size: 1.125rem !important;
+      font-weight: 400 !important;
+      line-height: 1.6 !important;
+    }
+    
+    .publication-authors {
+      font-size: 1.125rem !important;
+      font-weight: 400 !important;
+    }
+    
+    .content p, .content li {
+      font-size: 1.125rem !important;
+      font-weight: 400 !important;
+      line-height: 1.6 !important;
+    }
+    
+    .button {
+      font-size: 1rem !important;
+      font-weight: 500 !important;
+    }
+    
+    .footer .content p {
+      font-size: 0.875rem !important;
+    }
+  </style>
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="static/css/index.css">
-  
-  <!-- Non-critical CSS - Load asynchronously -->
-  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  
-  <!-- Fallback for browsers that don't support preload -->
-  <noscript>
-    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  </noscript>
-  
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Defer non-critical JavaScript -->
-  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
   <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script defer src="static/js/bulma-carousel.min.js"></script>
-  <script defer src="static/js/bulma-slider.min.js"></script>
-  <script defer src="static/js/index.js"></script>
-  
-  <!-- Structured Data for Academic Papers -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ScholarlyArticle",
-    "headline": "PAPER_TITLE",
-    "description": "BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS",
-    "author": [
-      {
-        "@type": "Person",
-        "name": "FIRST_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "SECOND_AUTHOR_NAME",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "INSTITUTION_NAME"
-        }
-      }
-    ],
-    "datePublished": "2024-01-01",
-    "publisher": {
-      "@type": "Organization",
-      "name": "CONFERENCE_OR_JOURNAL_NAME"
-    },
-    "url": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE",
-    "image": "https://YOUR_DOMAIN.com/static/images/social_preview.png",
-    "keywords": ["KEYWORD1", "KEYWORD2", "KEYWORD3", "machine learning", "computer vision"],
-    "abstract": "FULL_ABSTRACT_TEXT_HERE",
-    "citation": "BIBTEX_CITATION_HERE",
-    "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by/4.0/",
-    "mainEntity": {
-      "@type": "WebPage",
-      "@id": "https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
-    },
-    "about": [
-      {
-        "@type": "Thing",
-        "name": "RESEARCH_AREA_1"
-      },
-      {
-        "@type": "Thing", 
-        "name": "RESEARCH_AREA_2"
-      }
-    ]
-  }
-  </script>
-  
-  <!-- Website/Organization Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INSTITUTION_OR_LAB_NAME",
-    "url": "https://YOUR_INSTITUTION_WEBSITE.com",
-    "logo": "https://YOUR_DOMAIN.com/static/images/favicon.ico",
-    "sameAs": [
-      "https://twitter.com/YOUR_TWITTER_HANDLE",
-      "https://github.com/YOUR_GITHUB_USERNAME"
-    ]
-  }
-  </script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
 </head>
 <body>
 
-
-  <!-- Scroll to Top Button -->
-  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
-    <i class="fas fa-chevron-up"></i>
-  </button>
-
-  <!-- More Works Dropdown -->
-  <div class="more-works-container">
-    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Lab">
-      <i class="fas fa-flask"></i>
-      More Works
-      <i class="fas fa-chevron-down dropdown-arrow"></i>
-    </button>
-    <div class="more-works-dropdown" id="moreWorksDropdown">
-      <div class="dropdown-header">
-        <h4>More Works from Our Lab</h4>
-        <button class="close-btn" onclick="toggleMoreWorks()">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      <div class="works-list">
-        <!-- TODO: Replace with your lab's related works -->
-        <a href="https://arxiv.org/abs/PAPER_ID_1" class="work-item" target="_blank">
-          <div class="work-info">
-            <!-- TODO: Replace with actual paper title -->
-            <h5>Paper Title 1</h5>
-            <!-- TODO: Replace with brief description -->
-            <p>Brief description of the work and its main contribution.</p>
-            <!-- TODO: Replace with venue and year -->
-            <span class="work-venue">Conference/Journal 2024</span>
+<!-- Hero section with title and authors -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">MetaVLA</h1>
+          <h2 class="subtitle is-3 publication-subtitle">Unified Meta Co-Training for Efficient Embodied Adaptation</h2>
+          
+          <div class="is-size-5 publication-authors">
+            <!-- Paper authors -->
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Chen Li</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Zhantao Yang</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Han Zhang</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Fangyi Chen</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Chenchen Zhu</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Anudeepsekhar Bolimera</a>,</span>
+            <span class="author-block"><a href="https://stellar-neuron.github.io/metavla/" target="_blank">Marios Savvides</a></span>
           </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <!-- TODO: Add more related works or remove extra items -->
-        <a href="https://arxiv.org/abs/PAPER_ID_2" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 2</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-        <a href="https://arxiv.org/abs/PAPER_ID_3" class="work-item" target="_blank">
-          <div class="work-info">
-            <h5>Paper Title 3</h5>
-            <p>Brief description of the work and its main contribution.</p>
-            <span class="work-venue">Conference/Journal 2023</span>
-          </div>
-          <i class="fas fa-external-link-alt"></i>
-        </a>
-      </div>
-    </div>
-  </div>
 
-  <main id="main-content">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Carnegie Mellon University</span>
+          </div>
+
           <div class="column has-text-centered">
-            <!-- TODO: Replace with your paper title -->
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
-            <div class="is-size-5 publication-authors">
-              <!-- TODO: Replace with your paper authors and their personal links -->
-              <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
+            <div class="publication-links">
+              <!-- Arxiv PDF link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/xxxx" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
                   </span>
-                  </div>
+                  <span>Paper (Coming soon)</span>
+                </a>
+              </span>
 
-                  <div class="is-size-5 publication-authors">
-                    <!-- TODO: Replace with your institution and conference/journal info -->
-                    <span class="author-block">Institution Name<br>Conference name and year</span>
-                    <!-- TODO: Remove this line if no equal contribution -->
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
-                  </div>
-
-                  <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- TODO: Update with your arXiv paper ID -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
-
-                    <!-- TODO: Add your supplementary material PDF or remove this section -->
-                    <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
-                      class="external-link button is-normal is-rounded is-dark">
-                      <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
-                      </span>
-                      <span>Supplementary</span>
-                    </a>
-                  </span>
-
-                  <!-- TODO: Replace with your GitHub repository URL -->
-                  <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fab fa-github"></i>
-                    </span>
-                    <span>Code</span>
-                  </a>
-                </span>
-
-                <!-- TODO: Update with your arXiv paper ID -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
+              <!-- ArXiv abstract Link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/xxxx" target="_blank" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
                   </span>
-                  <span>arXiv</span>
+                  <span>arXiv (Coming soon)</span>
                 </a>
               </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/..." target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                </a>
+              </span>
+
+              <!-- HuggingFace Dataset Link -->
+              <!-- <span class="link-block">
+                <a href="" target="_blank" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fa fa-database"></i>
+                  </span>
+                  <span>HF Datasets</span>
+                </a>
+              </span> -->
             </div>
           </div>
         </div>
@@ -313,208 +159,185 @@
   </div>
 </section>
 
-
-<!-- Teaser video-->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- TODO: Replace with your teaser video -->
-      <video poster="" id="tree" autoplay controls muted loop height="100%" preload="metadata">
-        <!-- TODO: Add your video file path here -->
-        <source src="static/videos/banner_video.mp4" type="video/mp4">
-      </video>
-      <!-- TODO: Replace with your video description -->
-      <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
-      </h2>
-    </div>
-  </div>
-</section>
-<!-- End teaser video -->
-
 <!-- Paper abstract -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
-          <!-- TODO: Replace with your paper abstract -->
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            Vision–Language–Action (VLA) models show promise in embodied reasoning, yet remain far from <em>true generalists</em>—they often require task-specific fine-tuning, incur high compute costs, and generalize poorly to unseen tasks. We propose <b>MetaVLA</b>, a unified, backbone-agnostic post-training framework for efficient and scalable alignment. MetaVLA introduces <em>Context-Aware Meta Co-Training</em>, which consolidates diverse target tasks into a single fine-tuning stage while leveraging structurally diverse auxiliary tasks to improve in-domain generalization. Unlike naive multi-task SFT, MetaVLA integrates a lightweight meta-learning mechanism—derived from Attentive Neural Processes—to enable rapid adaptation from diverse contexts with minimal architectural change or inference overhead. On the LIBERO benchmark, MetaVLA with six auxiliary tasks outperforms OpenVLA by up to 8.0% on long-horizon tasks, reduces training steps from 240K to 75K, and cuts GPU time by ~76%. These results show that scalable, low-resource post-training is achievable—paving the way toward general-purpose embodied agents.
           </p>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End paper abstract -->
 
-
-<!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
-        <!-- TODO: Replace with description of this result -->
+<!-- Method overview image -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <img src="static/images/MetaVLA-v7.png" alt="MetaVLA framework overview" class="image"/>
         <h2 class="subtitle has-text-centered">
-          First image description.
+          <b>MetaVLA Architecture</b>. VLA backbone married with <em>Context-Aware Meta Co-Training</em> Framework, where the context memory bank is composed of both in-domain target tasks and out-of-domain auxiliary tasks.
         </h2>
       </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
     </div>
   </div>
-</div>
-</div>
 </section>
-<!-- End image carousel -->
 
+<!-- Motivation section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite advances in new task adaptation, current VLAs are not yet <em>true generalists</em>—still far from fully out-of-the-box usability and reliant on alignment through post-training.
+            Compounding this, post-training remains practically constrained by benchmarks with low per-task data. Current practice fine-tunes each downstream task independently, increasing overall training cost, hindering knowledge transfer across related tasks, and ultimately limiting success rate.
+            These task-specific schedules are often brittle: many gradient steps are required before stably meaningful action sequences emerge, raising the risk of poor generalization and slowing adaptation to new task variants. For example, OpenVLA requires 240K training steps to fine-tune across all four LIBERO suites, while OpenVLA-OFT demands approximately 150K~500K steps, including both diffusion and non-diffusion parts. Long-horizon tasks such as LIBERO-Long further dominate the training schedule and often become the system bottleneck.
+          </p>
+          <p>
+            While recent work has focused on expanding datasets and exploring backbone architecture or training protocol innovations during pretraining, we instead tackle it from an orthogonal perspective at the post-training stage.  Our experiments begin with a vanilla multi-task co-training setting: applying a standard SFT to a single model across related in-domain tasks (i.e., the four LIBERO suites). Indeed, we observe a reduction in total GPU training hours and improved success rates, which naturally motivates us to raise a question: can we introduce even more auxiliary tasks in the co-training to further boost VLA models? Sadly, we find that naively adding auxiliary tasks with greater domain diversity slows convergence and degrades performance. We attribute this surprise to the optimization instability arising from heterogeneous distributions, where misalignments in both the feature space (e.g., camera views) and action space (e.g., degrees of freedom) hinder the benefits of co-training.
+          </p>
+          <br>
+        </div>
+        <img src="static/images/MetaVLA-Fig1.2.png" alt="Stronger cross-task generalization with one single model." class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Stronger cross-task generalization with one single model.</b> OpenVLA requires training separate models for each task suite, resulting in higher training costs and poor cross-task performance. In contrast, MetaVLA achieves strong generalization across all four suites with a single unified model.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
 
-
-
-<!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- TODO: Replace with your YouTube video ID -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- Two analysis images side by side -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="columns">
+          <div class="column is-half has-text-centered">
+            <img src="static/images/MetaVLA-Fig1.1.png" alt="Higher success rate with fewer training steps." class="image"/>
+            <h2 class="subtitle has-text-justified">
+              <b>Higher success rate with fewer training steps.</b> MetaVLA achieves a 4.4% higher average success rate while requiring 68.75% fewer training steps compared to the OpenVLA baseline on LIBERO benchmarks.
+            </h2>
+          </div>
+          <div class="column is-half has-text-centered">
+            <img src="static/images/convergence_comparison_1_bimanual_5_single_acc.png" alt="Faster convergence to higher accuracy across all target tasks." class="image"/>
+            <h2 class="subtitle has-text-justified">
+              <b>Faster convergence to higher accuracy across all target tasks.</b> Comparison of training accuracy between MetaVLA and a baseline multi-task SFT when auxiliary tasks are added. MetaVLA consistently converges to higher accuracy across all LIBERO suites, while the baseline underperforms throughout training.
+            </h2>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
-
-<!-- Video carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video1" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video2">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video2" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <!-- TODO: Add poster image for better preview -->
-          <video poster="" id="video3" controls muted loop height="100%" preload="metadata">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4" type="video/mp4">
-          </video>
+<!-- Paper contributions -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Contributions</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li>We investigate an underexplored direction: improving post-training efficiency and generalization ability through incorporating diverse auxiliary tasks with negligible optimization overhead.</li>
+            <li>We propose MetaVLA, a suite of plug-in module and training recipes that enables fast and scalable adaptation with strong generalization. MetaVLA is engineering-friendly and agnostic to backbone architectures and underlying training pipelines.</li>
+            <li>We conduct comprehensive experiments to show that MetaVLA delivers superior performance with significant efficiency gains by reducing model count and GPU training hours, while preserving fast inference.</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-
-
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <!-- TODO: Replace with your poster PDF -->
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
+<!-- Experiments section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Experiments</h2>
         
+        <img src="static/images/main_table.png" alt="Quantitative evaluation results" class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Success rate comparison with prior methods.</b> All MetaVLA variants are single models trained for 75K steps. <em>MetaVLA (ours)</em> uses only LIBERO suites in the context bank without the stochastic module, while <em>MetaVLA+Stochastic (ours)</em> includes it. <em>SFT-4LIBERO</em> is a single-model baseline trained with vanilla multi-task SFT across all suites. <em>OpenVLA (top)</em> comprises four Hugging Face models fine-tuned separately on LIBERO using the OpenVLA-7B backbone, totaling roughly 240K steps. MetaVLA with six auxiliary tasks surpasses OpenVLA by 4.4% and SFT-4LIBERO by 3.1% on average, with even larger gains on LIBERO-Long (8.0% and 5.1%, respectively).
+        </h2>
+
+        <br><br>
+
+        <img src="static/images/MetaVLA-Data-v3.png" alt="Impact of TopoAug dataset and training methods" class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Comparison between auxiliary tasks and LIBERO evaluation benchmark.</b> LIBERO tasks use third-person front-view images and 7-DoF actions for a single-arm robot. In contrast, our auxiliary data from GR00T introduces variation through side-view observations and a two-arm robot with 14-DoF actions. MetaVLA benefits from this data diversity, while OpenVLA struggles with the domain mismatch.
+        </h2>
+
+        <br><br>
+
+        <img src="static/images/contexts_comparison.combined.png" alt="Comparison of accuracy and token length" class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Left: Per-suite LIBERO success rate across varying context batch sizes.</b> <em>OpenVLA</em> refers to the four Hugging Face baseline models, each fine-tuned individually on LIBERO using the OpenVLA-7B backbone, while <em>SFT-4LIBERO</em> is a single-model baseline trained with vanilla multi-task SFT across all suites. For each suite, success rate increases monotonically with context batch size. <b>Right: Average success rate across LIBERO suites with varying context batch sizes.</b> <em>OpenVLA</em> denotes the four Hugging Face models baselines fine-tuned individually on LIBERO with the OpenVLA-7B backbone, while <em>SFT-4LIBERO</em> is a single-model baseline trained with vanilla multi-task SFT across all suites. b<sub>c</sub> indicates the context batch size. Larger context batches consistently yield higher average success rates.
+        </h2>
+
+        <br><br>
+
+        <img src="static/images/single.png" alt="Comparison of accuracy and token length" class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>MetaVLA-EACH: Per-suite success rates across LIBERO.</b> <em>OpenVLA</em> denotes the four baseline models fine-tuned separately for each LIBERO suite, released on Hugging Face and trained for 240K total steps. <em>OpenVLA-120K</em> follows the same setup but with 120K steps. <em>MetaVLA-EACH-120K</em> and <em>MetaVLA-EACH-240K</em> are our models trained separately per suite for 120K and 240K steps, respectively, without co-training. Thanks to the <em>Action-ANP</em> design, all MetaVLA-EACH variants outperform their OpenVLA counterparts with fewer steps. For Goal and Long, performance continues to improve at 240K steps, indicating stronger learning potential.
+        </h2>
+
+        <br><br>
       </div>
     </div>
-  </section>
-<!--End paper poster -->
-
-
-
-<!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <div class="bibtex-header">
-        <h2 class="title">BibTeX</h2>
-        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-          <i class="fas fa-copy"></i>
-          <span class="copy-text">Copy</span>
-        </button>
-      </div>
-      <pre id="bibtex-code"><code>@article{YourPaperKey2024,
-  title={Your Paper Title Here},
-  author={First Author and Second Author and Third Author},
-  journal={Conference/Journal Name},
-  year={2024},
-  url={https://your-domain.com/your-project-page}
-}</code></pre>
-    </div>
+  </div>
 </section>
-<!--End BibTex citation -->
 
+<!-- Conclusion -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Conclusion</h2>
+        <div class="content has-text-justified">
+          <p>
+            We presented <b>MetaVLA</b>, a framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines. By introducing <em>Context-Aware Meta Co-Training</em>, MetaVLA integrates auxiliary tasks without destabilizing optimization, achieving superior convergence speed, efficiency, and generalization. MetaVLA is lightweight, plug-and-play, and backbone-agnostic, making it easy to extend beyond supervised fine-tuning to reinforcement learning or hybrid pipelines. Empirical results on LIBERO show consistent gains over both per-task fine-tuning and naive multi-task SFT, while significantly reducing training cost and model count. Looking forward, we envision extending MetaVLA to broader backbones and wider benchmarks, incorporating web-scale multimodal data, and deploying on real robots. We hope this work inspires future research toward efficient, scalable, and truly generalist embodied VLA systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <footer class="footer">
+<!-- BibTeX citation -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      Coming soon
+    </code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
-
         </div>
       </div>
     </div>
   </div>
 </footer>
 
-<!-- Statcounter tracking code -->
-  
-<!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
-
-    <!-- End of Statcounter Code -->
-
-  </body>
-  </html>
+</body>
+</html>
