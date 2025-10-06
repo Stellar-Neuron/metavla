@@ -9,14 +9,14 @@
   <meta property="og:description" content="We propose MetaVLA, a Meta-Learning based co-training framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines."/>
   <meta property="og:url" content="URL OF THE WEBSITE"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/images/MetaVLA-v7.png" />
+  <meta property="og:image" content="static/images/MetaVLA-v8.png" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
   <!-- <meta name="twitter:title" content="MetaVLA: Unified Meta Co-Training for Efficient Embodied Adaptation">
   <meta name="twitter:description" content="We propose MetaVLA, a Meta-Learning based co-training framework that addresses the inefficiencies and brittleness of current VLA post-training pipelines."> -->
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <!-- <meta name="twitter:image" content="static/images/MetaVLA-v7.png">
+  <!-- <meta name="twitter:image" content="static/images/MetaVLA-v8.png">
   <meta name="twitter:card" content="summary_large_image"> -->
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="Vision Language Models, Vision Language Action Models, Meta-Learning, VLM, VLA, generalization, embodied AI">
@@ -83,6 +83,8 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 </head>
 <body>
 
@@ -168,7 +170,7 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            Vision–Language–Action (VLA) models show promise in embodied reasoning, yet remain far from <em>true generalists</em>—they often require task-specific fine-tuning, incur high compute costs, and generalize poorly to unseen tasks. We propose <b>MetaVLA</b>, a unified, backbone-agnostic post-training framework for efficient and scalable alignment. MetaVLA introduces <em>Context-Aware Meta Co-Training</em>, which consolidates diverse target tasks into a single fine-tuning stage while leveraging structurally diverse auxiliary tasks to improve in-domain generalization. Unlike naive multi-task SFT, MetaVLA integrates a lightweight meta-learning mechanism—derived from Attentive Neural Processes—to enable rapid adaptation from diverse contexts with minimal architectural change or inference overhead. On the LIBERO benchmark, MetaVLA with six auxiliary tasks outperforms OpenVLA by up to 8.0% on long-horizon tasks, reduces training steps from 240K to 75K, and cuts GPU time by ~76%. These results show that scalable, low-resource post-training is achievable—paving the way toward general-purpose embodied agents.
+            Vision–Language–Action (VLA) models show promise in embodied reasoning, yet remain far from <em>true generalists</em>—they often require task-specific fine-tuning, incur high compute costs, and generalize poorly to unseen tasks. We propose <b>MetaVLA</b>, a unified, backbone-agnostic post-training framework for efficient and scalable alignment. MetaVLA introduces <em>Context-Aware Meta Co-Training</em>, which consolidates diverse target tasks into a single fine-tuning stage while leveraging structurally diverse auxiliary tasks to improve in-domain generalization. Unlike naive multi-task SFT, MetaVLA integrates a lightweight meta-learning mechanism, Meta Action Reasoner (MAR)—derived from Attentive Neural Processes—to enable rapid adaptation from diverse contexts with minimal architectural change or inference overhead. On the LIBERO benchmark, MetaVLA with six auxiliary tasks outperforms OpenVLA by up to 8.0% on long-horizon tasks, reduces training steps from 240K to 75K, and cuts GPU time by ~76%. These results show that scalable, low-resource post-training is achievable—paving the way toward general-purpose embodied agents.
           </p>
         </div>
       </div>
@@ -181,7 +183,7 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <img src="static/images/MetaVLA-v7.png" alt="MetaVLA framework overview" class="image"/>
+        <img src="static/images/MetaVLA-v8.png" alt="MetaVLA framework overview" class="image"/>
         <h2 class="subtitle has-text-centered">
           <b>MetaVLA Architecture</b>. VLA backbone married with <em>Context-Aware Meta Co-Training</em> Framework, where the context memory bank is composed of both in-domain target tasks and out-of-domain auxiliary tasks.
         </h2>
@@ -191,7 +193,7 @@
 </section>
 
 <!-- Motivation section -->
-<section class="section hero is-light">
+<!-- <section class="section hero is-light">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -204,6 +206,29 @@
           </p>
           <p>
             While recent work has focused on expanding datasets and exploring backbone architecture or training protocol innovations during pretraining, we instead tackle it from an orthogonal perspective at the post-training stage.  Our experiments begin with a vanilla multi-task co-training setting: applying a standard SFT to a single model across related in-domain tasks (i.e., the four LIBERO suites). Indeed, we observe a reduction in total GPU training hours and improved success rates, which naturally motivates us to raise a question: can we introduce even more auxiliary tasks in the co-training to further boost VLA models? Sadly, we find that naively adding auxiliary tasks with greater domain diversity slows convergence and degrades performance. We attribute this surprise to the optimization instability arising from heterogeneous distributions, where misalignments in both the feature space (e.g., camera views) and action space (e.g., degrees of freedom) hinder the benefits of co-training.
+          </p>
+          <br>
+        </div>
+        <img src="static/images/MetaVLA-Fig1.2.png" alt="Stronger cross-task generalization with one single model." class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Stronger cross-task generalization with one single model.</b> OpenVLA requires training separate models for each task suite, resulting in higher training costs and poor cross-task performance. In contrast, MetaVLA achieves strong generalization across all four suites with a single unified model.
+        </h2>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motivation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Despite progress in task adaptation, current VLAs are not true generalists—still reliant on costly, task-specific post-training. Fine-tuning per task limits transfer, raises training costs, and often requires many brittle gradient steps before stable behaviors emerge, slowing adaptation and risking poor generalization. For instance, OpenVLA needs 240K steps across LIBERO, while OpenVLA-OFT requires 150K–500K, with long-horizon tasks like LIBERO-Long becoming bottlenecks.
+          </p>
+          <p>
+            While prior work expands datasets or innovates at pretraining, we instead target post-training. Starting with multi-task co-training (SFT on all four LIBERO suites), we reduce GPU hours and improve success. This raises a question: can auxiliary tasks further boost VLAs? Surprisingly, naive inclusion hurts—convergence slows and performance drops. We attribute this to optimization instability from heterogeneous distributions, where mismatches in feature (e.g., camera views) and action spaces (e.g., DoFs) offset co-training benefits.
           </p>
           <br>
         </div>
@@ -258,6 +283,55 @@
   </div>
 </section>
 
+<!-- Method section -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+
+        <!-- <h2 class="subtitle has-text-justified">
+          <p>
+            We propose MAR, a compact Attentive Neural Process–based module integrated into the Llama-2 action decoder to improve convergence and generalization in low-data task adaptation. Following the ANP formulation, MAR models the conditional distribution of target actions given context examples by first applying self-attention over context pairs $(x_{Ci}, y_{Ci})$ to extract global priors, then fusing these with target queries $x_T$ via cross-attention to obtain task-aware representations:
+          </p>
+        </h2>
+
+        <img src="static/images/eq1.png" alt="Impact of TopoAug dataset and training methods" class="image" style="transform: scale(0.7);"/>
+
+        <h2 class="subtitle has-text-justified">
+          <p>
+            where $\mathbf{r}{Ci}$ and $\mathbf{s}{Ci}$ are per-context representations aggregated through self-attention, $\mathbf{r}_T$ is the cross-attention output, $\mathbf{\Bar{s}}_C$ is the mean context embedding, and $z$ is a latent drawn from $q(z|\mathbf{\Bar{s}}_C)$. Training leverages reparameterization with both context and target representations, optimizing a variational bound:
+          </p>
+        </h2>
+        
+        <img src="static/images/eq2.png" alt="Quantitative evaluation results" class="image"/>
+
+        <h2 class="subtitle has-text-justified">
+          <p>
+            which regularizes target reconstruction against the context distribution. Unlike standard ANP, MAR is integrated into a pretrained Llama-2 backbone, where its stochastic and deterministic latent vectors are concatenated with Llama hidden states before decoding, enabling end-to-end action prediction.
+          </p>
+        </h2>
+
+        <br><br> -->
+
+        <h2 class="subtitle has-text-justified">
+          <p>
+            We enhance MetaVLA with auxiliary tasks by adding GR00T, which was unseen during OpenVLA pretraining, that balances LIBERO's domain relevance with structural diversity.
+          </p>
+        </h2>
+
+        <img src="static/images/MetaVLA-Data-v3.png" alt="Impact of TopoAug dataset and training methods" class="image"/>
+        <h2 class="subtitle has-text-justified">
+          <b>Comparison between auxiliary tasks and LIBERO evaluation benchmark.</b> LIBERO tasks use third-person front-view images and 7-DoF actions for a single-arm robot. In contrast, our auxiliary data from GR00T introduces variation through side-view observations and a two-arm robot with 14-DoF actions. MetaVLA benefits from this data diversity, while OpenVLA struggles with the domain mismatch.
+        </h2>
+
+        <br><br>
+
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Experiments section -->
 <section class="section hero is-light">
   <div class="container is-max-desktop">
@@ -272,13 +346,6 @@
 
         <br><br>
 
-        <img src="static/images/MetaVLA-Data-v3.png" alt="Impact of TopoAug dataset and training methods" class="image"/>
-        <h2 class="subtitle has-text-justified">
-          <b>Comparison between auxiliary tasks and LIBERO evaluation benchmark.</b> LIBERO tasks use third-person front-view images and 7-DoF actions for a single-arm robot. In contrast, our auxiliary data from GR00T introduces variation through side-view observations and a two-arm robot with 14-DoF actions. MetaVLA benefits from this data diversity, while OpenVLA struggles with the domain mismatch.
-        </h2>
-
-        <br><br>
-
         <img src="static/images/contexts_comparison.combined.png" alt="Comparison of accuracy and token length" class="image"/>
         <h2 class="subtitle has-text-justified">
           <b>Left: Per-suite LIBERO success rate across varying context batch sizes.</b> <em>OpenVLA</em> refers to the four Hugging Face baseline models, each fine-tuned individually on LIBERO using the OpenVLA-7B backbone, while <em>SFT-4LIBERO</em> is a single-model baseline trained with vanilla multi-task SFT across all suites. For each suite, success rate increases monotonically with context batch size. <b>Right: Average success rate across LIBERO suites with varying context batch sizes.</b> <em>OpenVLA</em> denotes the four Hugging Face models baselines fine-tuned individually on LIBERO with the OpenVLA-7B backbone, while <em>SFT-4LIBERO</em> is a single-model baseline trained with vanilla multi-task SFT across all suites. b<sub>c</sub> indicates the context batch size. Larger context batches consistently yield higher average success rates.
@@ -288,7 +355,7 @@
 
         <img src="static/images/single.png" alt="Comparison of accuracy and token length" class="image"/>
         <h2 class="subtitle has-text-justified">
-          <b>MetaVLA-EACH: Per-suite success rates across LIBERO.</b> <em>OpenVLA</em> denotes the four baseline models fine-tuned separately for each LIBERO suite, released on Hugging Face and trained for 240K total steps. <em>OpenVLA-120K</em> follows the same setup but with 120K steps. <em>MetaVLA-EACH-120K</em> and <em>MetaVLA-EACH-240K</em> are our models trained separately per suite for 120K and 240K steps, respectively, without co-training. Thanks to the <em>Action-ANP</em> design, all MetaVLA-EACH variants outperform their OpenVLA counterparts with fewer steps. For Goal and Long, performance continues to improve at 240K steps, indicating stronger learning potential.
+          <b>MetaVLA-EACH: Per-suite success rates across LIBERO.</b> <em>OpenVLA</em> denotes the four baseline models fine-tuned separately for each LIBERO suite, released on Hugging Face and trained for 240K total steps. <em>OpenVLA-120K</em> follows the same setup but with 120K steps. <em>MetaVLA-EACH-120K</em> and <em>MetaVLA-EACH-240K</em> are our models trained separately per suite for 120K and 240K steps, respectively, without co-training. Thanks to the <em>MAR</em> design, all MetaVLA-EACH variants outperform their OpenVLA counterparts with fewer steps. For Goal and Long, performance continues to improve at 240K steps, indicating stronger learning potential.
         </h2>
 
         <br><br>
